@@ -2,7 +2,7 @@
 const express = require('express');
 const path = require('path');
 const morgan = require('morgan');
-const indexRouter = require('routes');
+const indexRouter = require('./routes');
 
 const app = express();
 
@@ -17,12 +17,6 @@ app.use(express.urlencoded({ extended: false, limit: '5mb' }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-
-// error handler
-
-app.use(function(req, res, next) {
-    next(new Err.NotFound('ERR_ROUTE_NOT_FOUND'));
-});
 
 app.use((err, req, res, next) => {
   console.error(err);

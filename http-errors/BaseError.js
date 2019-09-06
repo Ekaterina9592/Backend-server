@@ -6,7 +6,8 @@ class BaseError extends Error {
         this.status = status || 500;
         this.name = this.constructor.name;
         this.code = code;
-        this.Information = message;
+        this.Message = message;
+
         if (typeof Error.captureStackTrace == 'function') {
             Error.captureStackTrace(this, this.constructor);
         } else {

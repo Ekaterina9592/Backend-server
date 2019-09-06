@@ -8,5 +8,3 @@ class NotFoundError extends BaseError {
     }
 }
 exports.NotFoundError = NotFoundError;
-
-
