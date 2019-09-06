@@ -3,6 +3,8 @@ const express = require('express');
 const path = require('path');
 const morgan = require('morgan');
 const indexRouter = require('./routes');
+const { mainErrorController } = require('./controllers/error.controller');
+
 
 const app = express();
 
@@ -16,14 +18,8 @@ app.use(express.json({ limit: '5mb' }));
 app.use(express.urlencoded({ extended: false, limit: '5mb' }));
 app.use(express.static(path.join(__dirname, 'public')));
 
+
 app.use('/', indexRouter);
-
-app.use((err, req, res, next) => {
-  console.error(err);
-
-  if (!(err instanceof BlogError)) err = new Err.Internal();
-
-  res.status(err.status || 500).json(err);
-});
+app.use(mainErrorController);
 
 module.exports = app;

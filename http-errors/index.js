@@ -8,3 +8,11 @@ class NotFoundError extends BaseError {
     }
 }
 exports.NotFoundError = NotFoundError;
+
+
+class InternalError extends BaseError {
+    constructor(code, msg) {
+        super(500, code || 'ERR_INTERNAL', msg || '');
+    }
+}
+exports.InternalError = InternalError;
